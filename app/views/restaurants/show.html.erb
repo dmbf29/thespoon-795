@@ -1,0 +1,8 @@
+<div class="container">
+  <h1><%= @restaurant.name %></h1>
+  <p><%= @restaurant.address %></p>
+  <%= link_to 'Home', restaurants_path, class: 'btn btn-light' %>
+  <%= link_to restaurant_path(@restaurant), method: :delete, data: { confirm: "Remove #{@restaurant.name}?" } do %>
+    <i class="fas fa-times"></i>
+  <% end %>
+</div>

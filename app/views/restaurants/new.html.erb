@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>Add Restaurant</h1>
+
+  <% if @restaurant.errors.any? %>
+    <% @restaurant.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
+  <% end %>
+  <%# <input type="text" name="address">  %>
+  <%# <form action="/restaurants" method="post">
+  </form> %>
+  <%= render 'restaurants/form' %>
+
+</div>
