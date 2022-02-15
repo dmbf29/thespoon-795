@@ -1,13 +1,17 @@
 class RestaurantsController < ApplicationController
+
+  # '/restaurants'
   def index
     @restaurants = Restaurant.all
     # render index.html.erb
   end
 
+  # '/restaurants/1'
   def show
     @restaurant = Restaurant.find(params[:id])
   end
 
+  # '/restaurants/new'
   def new
     # this empty instance is so the form can build
     @restaurant = Restaurant.new
@@ -24,6 +28,7 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  # '/restaurants/1/edit'
   def edit
     # this instance is so the form can build
     @restaurant = Restaurant.find(params[:id])
