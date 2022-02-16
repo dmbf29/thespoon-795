@@ -1,4 +1,14 @@
 class RestaurantsController < ApplicationController
+  before_action :set_restaurant, only: [:chef, :show, :edit, :update, :destroy]
+
+  # /restaurants/top
+  def top
+    @restaurants = Restaurant.where(rating: 5)
+  end
+
+  # /restaurants/:id/chef
+  def chef
+  end
 
   # /restaurants
   def index
@@ -8,7 +18,6 @@ class RestaurantsController < ApplicationController
 
   # /restaurants/1
   def show
-    @restaurant = Restaurant.find(params[:id])
   end
 
   # /restaurants/new
@@ -31,11 +40,9 @@ class RestaurantsController < ApplicationController
   # /restaurants/1/edit
   def edit
     # this instance is so the form can build
-    @restaurant = Restaurant.find(params[:id])
   end
 
   def update
-    @restaurant = Restaurant.find(params[:id])
     if @restaurant.update(restaurant_params)
       redirect_to restaurant_path(@restaurant)
     else
@@ -45,8 +52,6 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
-    # get the instance
-    @restaurant = Restaurant.find(params[:id])
     # destroy the instance
     @restaurant.destroy
     # redirect somewhere
@@ -57,5 +62,9 @@ class RestaurantsController < ApplicationController
 
   def restaurant_params
     params.require(:restaurant).permit(:name, :address, :rating, :category)
+  end
+
+  def set_restaurant
+    @restaurant = Restaurant.find(params[:id])
   end
 end
